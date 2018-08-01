@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Button} from 'react-native';
+import BaseComponent from "../common/BaseComponent";
 
 
-type Props = {};
-export default class TrendingPage extends Component<Props> {
+export default class TrendingPage extends BaseComponent {
     render() {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to React Native!</Text>
+                <Text style={styles.welcome}>Welcome trend!</Text>
 
             </View>
         );

@@ -8,7 +8,7 @@ export default class MyPage extends Component<Props> {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to React Native!</Text>
+                <Text style={styles.welcome}>Welcome to my!</Text>
 
             </View>
         );
