@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, TextInput,ListView} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TextInput,ListView,RefreshControl} from 'react-native';
 import NavigationBar from "../common/NavigationBar";
 import DataRepository from "../expand/dao/DataRepository";
 import ScrollableTabView, {ScrollableTabBar} from 'react-native-scrollable-tab-view'
 import BaseComponent from "../common/BaseComponent";
 import RepositoryCell from "../common/RepositoryCell";
-
+import LanguageDao, {FLAG_LANGUAGE} from "../expand/dao/LanguageDao";
+import RepositoryDetail from './RepositoryDetail'
 const URL = 'https://api.github.com/search/repositories?q=';
 const QUERY_STR = '&sort=stars';
 
@@ -13,27 +14,60 @@ type Props = {};
 export default class PopularPage extends BaseComponent {
     constructor(props) {
         super(props)
+        this.LanguageDao = new LanguageDao(FLAG_LANGUAGE.flag_key)
         this.dataRepository = new DataRepository();
         this.state = {
-            result: ''
+            result: '',
+            languages:[],
+            
         }
     }
 
+    componentDidMount(){
+
+        this.LoadData();
+    }
+
+   
+    LoadData() {
+        this.LanguageDao.fetch()
+            .then(result => {
+                this.setState({
+                    languages: result
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     render() {
 
+        let content = this.state.languages.length>0?
+            <ScrollableTabView
+                tabBarUnderlineStyle={{backgroundColor:'#e7e7e7',height:2}}
+                tabBarBackgroundColor='#2196F3'
+                tabBarInactiveTextColor="mintcream"
+                tabBarActiveTextColor = 'white'
+
+                renderTabBar={() => <ScrollableTabBar/>}>
+                {this.state.languages.map((result,i,arr)=>{
+                    let lan=arr[i];
+                    return lan.checked?<PopularTab {...this.props} tabLabel={lan.name}></PopularTab>:null;
+                })}
+
+            </ScrollableTabView>:null;
+
         return (
+
+
             <View style={styles.container}>
                 <NavigationBar
                     title='最热'
-                    style={{backgroundColor: '#6495ED'}}
+                    style={{backgroundColor: '#2196F3'}}
+
                 />
-                <ScrollableTabView renderTabBar={() => <ScrollableTabBar/>}>
-                    <PopularTab tabLabel="Java">JAVA</PopularTab>
-                    <PopularTab tabLabel="ios">iOS</PopularTab>
-                    <PopularTab tabLabel="Android">Android</PopularTab>
-                    <PopularTab tabLabel="JavaScript">JavaScript</PopularTab>
-                </ScrollableTabView>
+                {content}
 
 
             </View>
@@ -48,7 +82,8 @@ class PopularTab extends BaseComponent {
         this.dataRepository = new DataRepository();
         this.state = {
             result: '',
-            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+            isLoading:false
         }
     }
 
@@ -56,14 +91,24 @@ class PopularTab extends BaseComponent {
 
         this.loadData();
     }
+    
+    onSelect(item){
 
+        this.props.navigation.navigate('RepositoryDetail',{item:item,...this.props})
+
+    }
+    
     loadData() {
+        this.setState({
+            isLoading:true
+        })
         let url = this.genUrl(this.props.tabLabel);
         this.dataRepository.fetchNetRepository(url)
             .then(result => {
                 this.setState({
 
-                    dataSource:this.state.dataSource.cloneWithRows(result.items)
+                    dataSource:this.state.dataSource.cloneWithRows(result.items),
+                    isLoading:false
                 })
             })
             .catch(error => {
@@ -78,7 +123,10 @@ class PopularTab extends BaseComponent {
     }
 
     renderRow(data){
-        return <RepositoryCell data={data}/>
+        return <RepositoryCell 
+            onSelect = {()=>this.onSelect(data)}
+            key={data.id}
+            data={data}/>
     }
     render() {
 
@@ -88,6 +136,12 @@ class PopularTab extends BaseComponent {
                     dataSource={this.state.dataSource}
                     renderRow={(data)=>
                         this.renderRow(data)
+                    }
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.isLoading}
+                            onRefresh={()=>this.loadData()}
+                        />
                     }
                 />
             </View>

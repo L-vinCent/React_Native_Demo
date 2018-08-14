@@ -12,7 +12,7 @@ import TabNavigator from 'react-native-tab-navigator'
 import PopularPage from './PopularPage'
 import TrendingPage from './TrendingPage'
 import FavoritePage from './FavoritePage'
-import MyPage from './MyPage'
+import MyPage from './my/MyPage'
 import BaseComponent from "../common/BaseComponent";
 import ThemeFactory, {ThemeFlags} from "../../res/styles/ThemeFactory";
 

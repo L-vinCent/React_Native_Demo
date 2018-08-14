@@ -7,9 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-check-box": "^2.1.0",
     "react-native-scrollable-tab-view": "^0.8.0",
+    "react-native-sortable-listview": "^0.2.8",
     "react-native-splash-screen": "^3.1.0",
     "react-native-tab-navigator": "^0.3.4",
     "react-navigation": "^2.9.3"

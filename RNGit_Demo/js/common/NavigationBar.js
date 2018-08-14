@@ -49,6 +49,7 @@ export default class NavigationBar extends Component {
         };
     }
 
+
     getButtonElement(data) {
         return (
             <View style={styles.navBarButton}>

@@ -4,8 +4,10 @@ import WelcomePage from "./WelcomePage"
 import HomePage from "./HomePage"
 import FavoritePage from './FavoritePage'
 import TrendingPage from './TrendingPage'
-import MyPage from './MyPage'
-
+import MyPage from './my/MyPage'
+import CustomKeyPage from './my/CustomKeyPage'
+import SortKeyPage from './my/SortKeyPage'
+import RepositoryDetail from './RepositoryDetail'
 export default AppNavigator = StackNavigator({
 
         WelcomePage: {
@@ -23,6 +25,15 @@ export default AppNavigator = StackNavigator({
         TrendingPage:{
 
             screen:TrendingPage,
+        },
+        CustomKeyPage:{
+            screen:CustomKeyPage,
+        },
+        SortKeyPage:{
+            screen:SortKeyPage,
+        },
+        RepositoryDetail:{
+            screen:RepositoryDetail,
         }
     }, {
         navigationOptions: {
