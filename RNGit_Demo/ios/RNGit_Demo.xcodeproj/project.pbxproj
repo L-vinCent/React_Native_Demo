@@ -36,6 +36,10 @@
 		2DCD954D1E0B4F2C00145EB5 /* RNGit_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RNGit_DemoTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		67573A35212E62AD00E7C108 /* RNGitTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 67573A33212E62AD00E7C108 /* RNGitTestVC.m */; };
+		67573A36212E62AD00E7C108 /* RNGitTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67573A34212E62AD00E7C108 /* RNGitTestVC.xib */; };
+		679B4780212FA328003174DE /* OpenNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 679B477E212FA328003174DE /* OpenNativeModule.m */; };
+		679B4783212FA5F0003174DE /* RNMethodTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 679B4781212FA5EF003174DE /* RNMethodTool.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
@@ -340,6 +344,13 @@
 		2D02E4901E0B4A5D006451C7 /* RNGit_Demo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RNGit_Demo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		67573A32212E62AD00E7C108 /* RNGitTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNGitTestVC.h; sourceTree = "<group>"; };
+		67573A33212E62AD00E7C108 /* RNGitTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNGitTestVC.m; sourceTree = "<group>"; };
+		67573A34212E62AD00E7C108 /* RNGitTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RNGitTestVC.xib; sourceTree = "<group>"; };
+		679B477E212FA328003174DE /* OpenNativeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenNativeModule.m; sourceTree = "<group>"; };
+		679B477F212FA328003174DE /* OpenNativeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNativeModule.h; sourceTree = "<group>"; };
+		679B4781212FA5EF003174DE /* RNMethodTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMethodTool.m; sourceTree = "<group>"; };
+		679B4782212FA5F0003174DE /* RNMethodTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMethodTool.h; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -482,6 +493,7 @@
 		13B07FAE1A68108700A75B9A /* RNGit_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				67573A5C212E62ED00E7C108 /* NativeTest */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -531,6 +543,20 @@
 				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		67573A5C212E62ED00E7C108 /* NativeTest */ = {
+			isa = PBXGroup;
+			children = (
+				679B4782212FA5F0003174DE /* RNMethodTool.h */,
+				679B4781212FA5EF003174DE /* RNMethodTool.m */,
+				679B477F212FA328003174DE /* OpenNativeModule.h */,
+				679B477E212FA328003174DE /* OpenNativeModule.m */,
+				67573A32212E62AD00E7C108 /* RNGitTestVC.h */,
+				67573A33212E62AD00E7C108 /* RNGitTestVC.m */,
+				67573A34212E62AD00E7C108 /* RNGitTestVC.xib */,
+			);
+			name = NativeTest;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -1049,6 +1075,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				67573A36212E62AD00E7C108 /* RNGitTestVC.xib in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1114,8 +1141,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				679B4783212FA5F0003174DE /* RNMethodTool.m in Sources */,
+				679B4780212FA328003174DE /* OpenNativeModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				67573A35212E62AD00E7C108 /* RNGitTestVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

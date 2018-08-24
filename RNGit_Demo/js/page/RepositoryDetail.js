@@ -11,8 +11,9 @@ export default class RepositoryDetail extends Component {
 
         super(props);
         const {params} = this.props.navigation.state;
-        this.url = params.item.html_url;
-        let title = params.item.full_name;
+        let projectModel = params.item.item;
+        this.url = projectModel.item.html_url;
+        let title = projectModel.item.full_name;
 
         this.state = {
             url: this.url,

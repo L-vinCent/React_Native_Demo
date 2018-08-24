@@ -6,26 +6,44 @@ export default class RepositoryCell extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isFavorite: false,
-            favoriteIcon: require('../../res/images/ic_unstar_transparent.png'),
+            isFavorite: this.props.projectModel.item.isFavorite,
+            favoriteIcon: this.props.projectModel.item.isFavorite ? require('../../res/images/ic_star.png') : require('../../res/images/ic_unstar_transparent.png'),
         }
+    }
+
+    setFavoriteState(isFavorite){
+        this.props.projectModel.item.isFavorite = isFavorite;
+        this.setState({
+            isFavorite:isFavorite,
+            favoriteIcon: this.props.projectModel.item.isFavorite ? require('../../res/images/ic_star.png') : require('../../res/images/ic_unstar_transparent.png'),
+        })
+
     }
 
     onPressFavoriteBtn() {
 
         this.setState({
 
+
             isFavorite: !this.state.isFavorite,
             favoriteIcon: !this.state.isFavorite ? require('../../res/images/ic_star.png') : require('../../res/images/ic_unstar_transparent.png'),
 
         })
+        this.props.onFavorite(this.props.projectModel.item.item,!this.state.isFavorite)
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        this.setFavoriteState(nextProps.projectModel.item.isFavorite);
     }
 
     render() {
 
+        let item = this.props.projectModel.item.item ? this.props.projectModel.item.item : this.props.projectModel.item;
+        console.log(item);
         let favoriteBtn = <TouchableOpacity
 
-            onPress={()=>this.onPressFavoriteBtn()}
+            onPress={() => this.onPressFavoriteBtn()}
         >
 
             <Image
@@ -35,34 +53,33 @@ export default class RepositoryCell extends Component {
 
         </TouchableOpacity>
 
-
         return <TouchableOpacity
 
             onPress={this.props.onSelect}
 
         >
 
-
             <View style={styles.cell_container}>
-                <Text style={styles.title}>{this.props.data.full_name}</Text>
-                <Text>{this.props.data.description}</Text>
+                <Text style={styles.title}>{item.archive_url}</Text>
+                <Text>{item.description}</Text>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                     <View style={{flexDirection: 'row', alignItems: 'center'}}>
                         <Text>Author:</Text>
                         <Image
                             style={{height: 22, width: 22}}
-                            source={{uri: this.props.data.owner.avatar_url}}
+                            source={{uri: item.owner.avatar_url}}
                         />
                     </View>
                     <View style={{flexDirection: 'row', alignItems: 'center'}}>
                         <Text>Stars:</Text>
-                        <Text>{this.props.data.stargazers_count}</Text>
+                        <Text>{item.stargazers_count}</Text>
 
                     </View>
                     {favoriteBtn}
                 </View>
 
             </View>
+
 
         </TouchableOpacity>
     }

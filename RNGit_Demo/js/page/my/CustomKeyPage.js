@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, ScrollView, Image,Alert} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, ScrollView, Image,Alert,DeviceEventEmitter} from 'react-native';
 import NavigationBar from "../../common/NavigationBar";
 import ViewUtils from "../util/ViewUtils";
 import LanguageDao, {FLAG_LANGUAGE} from "../../expand/dao/LanguageDao";
 import CheckBox from 'react-native-check-box'
 import ArrayUtils from "../util/ArrayUtils";
+
+export const DeviceEmitter_customerKey = 'DeviceEmitter_customerKey'
 
 export default class CustomKeyPage extends Component {
     constructor(props) {
@@ -42,6 +44,8 @@ export default class CustomKeyPage extends Component {
         }
         this.LanguageDao.save(this.state.dataArray);
         this.props.navigation.pop()
+
+        DeviceEventEmitter.emit(DeviceEmitter_customerKey);
     }
 
     onBack() {

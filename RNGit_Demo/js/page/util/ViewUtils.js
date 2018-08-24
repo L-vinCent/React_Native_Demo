@@ -37,7 +37,7 @@ export default class ViewUtils {
                         }
                         <Text>{text}</Text>
                     </View>
-                    <Image source={expandableIco ? expandableIco : require('../../../res/images/ic_arrow_back_white_36pt.png')}
+                    <Image source={expandableIco ? expandableIco : require('../../../res/images/ic_tiaozhuan.png')}
                            style={[{
                                marginRight: 10,
                                height: 22,
