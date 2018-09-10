@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     Text,
+
 } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import NavigatorUtil from "./NavigatorUtil";
@@ -13,6 +14,9 @@ export default class WelcomePage extends Component {
     }
 
     componentDidMount() {
+
+        SplashScreen.hide();
+
         new ThemeDao().getTheme().then((data)=>{
             this.theme = data;
         })

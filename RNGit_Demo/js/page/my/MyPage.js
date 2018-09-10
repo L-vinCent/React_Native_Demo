@@ -6,7 +6,7 @@ import ViewUtils from "../util/ViewUtils";
 import {MORE_MENU} from "../../common/MoreMenu";
 import GlobalStyles from "../../../res/styles/GlobalStyles"
 
-
+import codePush from 'react-native-code-push'
 var testObject = NativeModules.OpenNativeModule;
 
 
@@ -22,6 +22,20 @@ export default class MyPage extends Component {
 
     }
 
+    update(){
+
+        codePush.sync({
+            updateDialog: {
+                appendReleaseDescription: true,
+                descriptionPrefix:'更新内容：',
+                title:'更新',
+                mandatoryUpdateMessage:'',
+                mandatoryContinueButtonLabel:'更新',
+            },
+            mandatoryInstallMode:codePush.InstallMode.IMMEDIATE,
+        });
+
+    }
     componentDidMount() {
         NativeBridge.pp_startObserving();
 
@@ -57,6 +71,11 @@ export default class MyPage extends Component {
             case MORE_MENU.Custom_Language:
 
                 NativeBridge.doSomething('RN传递的参数');
+
+                break;
+            case '更新':
+
+                this.update();
 
                 break;
         }
@@ -118,6 +137,10 @@ export default class MyPage extends Component {
 
                     <View style={GlobalStyles.line}/>
                     {this.getItem(MORE_MENU.Custom_Language, require('./img/ic_custom_language.png'), '跳转到原生模块')}
+
+
+                    <View style={GlobalStyles.line}/>
+                    {this.getItem('更新', require('./img/ic_custom_language.png'), '热更新')}
 
                 </ScrollView>
             </View>
